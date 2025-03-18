@@ -10,14 +10,14 @@ const Service = require("./Service")
 
 
 Operation.hasMany(Service, {
-    sourceKey: "id",
-    foreignKey: "id_service",
+    sourceKey: "id_service",
+    foreignKey: "id",
     as: "service"
 });
 
 Operation.hasMany(Record, {
-    sourceKey: "id",
-    foreignKey: "id_record",
+    sourceKey: "id_record",
+    foreignKey: "id",
     as: "record"
 });
 
@@ -28,46 +28,46 @@ Operation.hasMany(Record, {
 // });
 
 Operation.hasMany(Employee, {
-    sourceKey: "id",
-    foreignKey: "id_employee",
+    sourceKey: "id_employee",
+    foreignKey: "id",
     as: "employee"
 });
 
 Documents.hasMany(Operation, {
-    sourceKey: "id",
-    foreignKey: "id_operation",
+    sourceKey: "id_operation",
+    foreignKey: "id",
     as: "operation"
 });
 
 Address.hasMany(Client, {
-    sourceKey: "id",
-    foreignKey: "id_client",
+    sourceKey: "id_client",
+    foreignKey: "id",
     as: "client"
 });
 
 Record.hasMany(Service, {
-    sourceKey: "id",
-    foreignKey: "id_service",
+    sourceKey: "id_service",
+    foreignKey: "id",
     as: "service"
 });
 
 Record.hasMany(Client, {
-    sourceKey: "id",
-    foreignKey: "id_client",
+    sourceKey: "id_client",
+    foreignKey: "id",
     as: "client"
 });
 
 NeedDocument.hasMany(DocumentList, {
-    sourceKey: "id",
-    foreignKey: "id_doc_list",
+    sourceKey: "id_doc_list",
+    foreignKey: "id",
     as: "documentList"
 });
 
 NeedDocument.hasOne(Service, {
-    sourceKey: "id",
-    foreignKey: "id_service",
+    sourceKey: "id_service",
+    foreignKey: "id",
     as: "service"
 });
 
-
+// поменять fk и pk
 module.exports = {Operation, Address, Client, DocumentList, Documents, Employee, NeedDocument, Record, Service}

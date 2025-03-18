@@ -11,7 +11,7 @@ const {createEmployee} = require("./data-access/employee");
 const {createNeedDocument} = require("./data-access/needDocument");
 const {createOperation} = require("./data-access/operation");
 const {createRecord} = require("./data-access/record");
-const {createService} = require("./data-access/servise");
+const {createService} = require("./data-access/service");
 
 // createDocumentList("type");
 // createService("title","description");

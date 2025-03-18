@@ -1,14 +1,13 @@
 const HttpStatus = require("http-status-codes");
-const bodyParser = require("body-parser");
-const {createDocumentList, getByIdcreateDocumentList, getAllDocumentList, deleteDocumentList, deleteDocumentListById} = require("../data-access/documentList")
+const {createService, getAllService, deleteServiceById} = require("../data-access/service")
 
 
-const createDocumentListControler = async(req,res) => {
+const createServiceControler = async(req,res) => {
     console.log(req.body);
     try {
-        const {type} = req.body;
+        const {title, description} = req.body;
         console.log(req);
-        await createDocumentList(type);
+        await createService(title, description);
         res.status(HttpStatus.CREATED).send()
     }catch(e){
         console.log(e);
@@ -35,12 +34,12 @@ const createDocumentListControler = async(req,res) => {
 //     }
 // }
 
-const deleteDocumentListControler = async(req,res) => {
+const deleteServiceControler = async(req,res) => {
     console.log(req.body);
     try {
         const {params} = req;
         console.log(req);
-        await deleteDocumentListById(+params.id);
+        await deleteServiceById(+params.id);
         res.status(HttpStatus.NO_CONTENT).send()
     }catch(e){
         console.log(e);
@@ -51,10 +50,10 @@ const deleteDocumentListControler = async(req,res) => {
     }
 }
 
-const getAllDocumentListControler = async(req,res) => {
+const getAllServiceControler = async(req,res) => {
     try {
-        const allDocumentList = await getAllDocumentList();
-        res.status(HttpStatus.OK).json(allDocumentList)
+        const allService = await getAllService();
+        res.status(HttpStatus.OK).json(allService)
     }catch(e){
         console.log(e);
         res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
@@ -77,4 +76,4 @@ const getAllDocumentListControler = async(req,res) => {
 //     }
 // }
 
-module.exports = {createDocumentListControler, deleteDocumentListControler, getAllDocumentListControler}
+module.exports = {createServiceControler, getAllServiceControler, deleteServiceControler}
