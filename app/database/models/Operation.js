@@ -9,7 +9,7 @@ const Operation = sequelize.define("operation", {
         allowNull: false,
         type: DataTypes.INTEGER.UNSIGNED
     },
-    id_servise: {
+    id_service: {
         allowNull: false,
         type: DataTypes.INTEGER.UNSIGNED
     },

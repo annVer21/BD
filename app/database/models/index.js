@@ -9,65 +9,58 @@ const Record = require("./Record")
 const Service = require("./Service")
 
 
-Operation.hasMany(Service, {
-    sourceKey: "id_service",
-    foreignKey: "id",
-    as: "service"
+Service.hasMany(Operation, { 
+    sourceKey: "id",
+    foreignKey: "id_service",
+    as: "service_operation"
 });
 
-Operation.hasMany(Record, {
-    sourceKey: "id_record",
-    foreignKey: "id",
-    as: "record"
+Record.hasMany(Operation, { 
+    sourceKey: "id",
+    foreignKey: "id_record",
+    as: "record_operation"
 });
 
-// Operation.hasMany(Documents, {
-//     sourceKey: "id",
-//     foreignKey: "id_documents",
-//     as: "documents"
-// });
-
-Operation.hasMany(Employee, {
-    sourceKey: "id_employee",
-    foreignKey: "id",
-    as: "employee"
+Operation.hasMany(Documents, { 
+    sourceKey: "id",
+    foreignKey: "id_operation",
+    as: "documents_operation"
 });
 
-Documents.hasMany(Operation, {
-    sourceKey: "id_operation",
-    foreignKey: "id",
-    as: "operation"
+Employee.hasMany(Operation, { // OK
+    sourceKey: "id",
+    foreignKey: "id_employee",
+    as: "employee_operation"
 });
 
-Address.hasMany(Client, {
-    sourceKey: "id_client",
-    foreignKey: "id",
-    as: "client"
+Client.hasMany(Address, { 
+    sourceKey: "id",
+    foreignKey: "id_client",
+    as: "client_address"
 });
 
-Record.hasMany(Service, {
-    sourceKey: "id_service",
-    foreignKey: "id",
-    as: "service"
+Service.hasMany(Record, { 
+    sourceKey: "id",
+    foreignKey: "id_service",
+    as: "service_record"
 });
 
-Record.hasMany(Client, {
-    sourceKey: "id_client",
-    foreignKey: "id",
-    as: "client"
+Client.hasMany(Record, { 
+    sourceKey: "id",
+    foreignKey: "id_client",
+    as: "client_record"
 });
 
-NeedDocument.hasMany(DocumentList, {
-    sourceKey: "id_doc_list",
-    foreignKey: "id",
-    as: "documentList"
+DocumentList.hasMany(NeedDocument, { 
+    sourceKey: "id",
+    foreignKey: "id_doc_list",
+    as: "documentList_need_doc"
 });
 
-NeedDocument.hasOne(Service, {
-    sourceKey: "id_service",
-    foreignKey: "id",
-    as: "service"
+Service.hasOne(NeedDocument, { 
+    sourceKey: "id",
+    foreignKey: "id_service",
+    as: "service_need_doc"
 });
 
-// поменять fk и pk
 module.exports = {Operation, Address, Client, DocumentList, Documents, Employee, NeedDocument, Record, Service}

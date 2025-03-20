@@ -42,7 +42,7 @@ app.use(routes);
 (async () => {
     try{
         await sequelize.sync() 
-        app.listen(5000, () => console.log("Server start"))
+        app.listen(5001, () => console.log("Server start"))
     }
     catch(err){
         console.log(err)
