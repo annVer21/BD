@@ -1,14 +1,11 @@
 const HttpStatus = require("http-status-codes");
-const bodyParser = require("body-parser");
-const {createDocumentList, getByIdcreateDocumentList, getAllDocumentList, deleteDocumentList, deleteDocumentListById} = require("../data-access/documentList")
+const {createDocumentList, updateDocumentListById, getDocumentListById, getAllDocumentList, deleteDocumentList, deleteDocumentListById} = require("../data-access/documentList")
 
 
 const createDocumentListControler = async(req,res) => {
-    console.log(req.body);
     try {
-        const {type} = req.body;
-        console.log(req);
-        await createDocumentList(type);
+        const {documentType} = req.body;
+        await createDocumentList(documentType);
         res.status(HttpStatus.CREATED).send()
     }catch(e){
         console.log(e);
@@ -19,33 +16,30 @@ const createDocumentListControler = async(req,res) => {
     }
 }
 
-// const updateDocumentListControler = async(req,res) => {
-//     console.log(req.body);
-//     try {
-//         const {type} = req.body;
-//         console.log(req);
-//         await createDocumentList(type);
-//         res.status(HttpStatus.CREATED).send()
-//     }catch(e){
-//         console.log(e);
-//         res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-//             message: "can't create"
-//         })
+const updateDocumentListControler = async(req,res) => {
+    try {
+        const {id, documentType} = req.body;
+        console.log(documentType);
+        await updateDocumentListById({id, documentType})
+        res.status(HttpStatus.OK).json({msg: "its ok"})
+    }catch(e){
+        console.log(e);
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+            message: "can't update"
+        })
 
-//     }
-// }
+    }
+}
 
 const deleteDocumentListControler = async(req,res) => {
-    console.log(req.body);
     try {
         const {params} = req;
-        console.log(req);
         await deleteDocumentListById(+params.id);
         res.status(HttpStatus.NO_CONTENT).send()
     }catch(e){
         console.log(e);
         res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-            message: "can't create"
+            message: "can't delete"
         })
 
     }
@@ -58,23 +52,23 @@ const getAllDocumentListControler = async(req,res) => {
     }catch(e){
         console.log(e);
         res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-            message: "can't create"
+            message: "can't get"
+        })
+    }
+}
+
+const getByIdDocumentListControler = async(req,res) => {
+    try {
+        const {params} = req;
+        const documentList = await getDocumentListById(+params.id);
+        res.status(HttpStatus.OK).json(documentList)
+    }catch(e){
+        console.log(e);
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+            message: "can't get"
         })
 
     }
 }
 
-// const getByIdDocumentListControler = async(req,res) => {
-//     try {
-//         const allDocumentList = await getAllDocumentList();
-//         res.status(HttpStatus.OK).json(allDocumentList)
-//     }catch(e){
-//         console.log(e);
-//         res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-//             message: "can't create"
-//         })
-
-//     }
-// }
-
-module.exports = {createDocumentListControler, deleteDocumentListControler, getAllDocumentListControler}
+module.exports = {createDocumentListControler, deleteDocumentListControler, getAllDocumentListControler,updateDocumentListControler,getByIdDocumentListControler};
