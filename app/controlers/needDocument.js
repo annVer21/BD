@@ -1,11 +1,11 @@
 const HttpStatus = require("http-status-codes");
-const {createClient, getAllClient}= require("../data-access/client")
+const {createNeedDocument, getAllNeedDocument}= require("../data-access/needDocument")
 
 
-const createClientControler = async(req,res) => {
+const createNeedDocumentControler = async(req,res) => {
     try {
-        const {name, surname, patronymic, telephone, passport} = req.body;
-        await createClient(name, surname, patronymic, telephone, passport);
+        const {id_service, id_doc_list} = req.body;
+        await createNeedDocument(id_service, id_doc_list);
         res.status(HttpStatus.CREATED).send();
     }catch(e){
         console.log(e);
@@ -15,9 +15,9 @@ const createClientControler = async(req,res) => {
     }
 }
 
-const getAllClientControler = async(req,res) => {
+const getAllNeedDocumentController = async(req,res) => {
     try {
-        const allClient = await getAllClient();
+        const allClient = await getAllNeedDocument();
         res.status(HttpStatus.OK).json(allClient)
     }catch(e){
         console.log(e);
@@ -27,4 +27,4 @@ const getAllClientControler = async(req,res) => {
     }
 }
 
-module.exports = {createClientControler, getAllClientControler};
+module.exports = {createNeedDocumentControler, getAllNeedDocumentController};

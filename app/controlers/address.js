@@ -1,5 +1,5 @@
 const HttpStatus = require("http-status-codes");
-const {createAddress}= require("../data-access/address")
+const {createAddress, getAllAddresses}= require("../data-access/address")
 
 
 const createAddressControler = async(req,res) => {
@@ -45,17 +45,17 @@ const createAddressControler = async(req,res) => {
 //     }
 // }
 
-// const getAllDocumentListControler = async(req,res) => {
-//     try {
-//         const allDocumentList = await getAllDocumentList();
-//         res.status(HttpStatus.OK).json(allDocumentList)
-//     }catch(e){
-//         console.log(e);
-//         res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-//             message: "can't get"
-//         })
-//     }
-// }
+const getAllAddressControler = async(req,res) => {
+    try {
+        const allAddresses = await getAllAddresses();
+        res.status(HttpStatus.OK).json(allAddresses)
+    }catch(e){
+        console.log(e);
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+            message: "can't get"
+        })
+    }
+}
 
 // const getByIdDocumentListControler = async(req,res) => {
 //     try {
@@ -71,4 +71,4 @@ const createAddressControler = async(req,res) => {
 //     }
 // }
 
-module.exports = {createAddressControler};
+module.exports = {createAddressControler,getAllAddressControler};

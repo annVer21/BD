@@ -1,10 +1,10 @@
 const {Router} = require("express");
-const {createClientControler, getAllClientControler} = require("../controlers/client");
+const {createNeedDocumentControler, getAllNeedDocumentController} = require("../controlers/needDocument");
 
 const router = Router();
-router.post("/", createClientControler);
+router.post("/", createNeedDocumentControler);
 // router.delete("/:id", deleteDocumentListControler);
-router.get("/", getAllClientControler);
+router.get("/", getAllNeedDocumentController);
 // router.get("/:id", getByIdDocumentListControler);
 // router.put("/", updateDocumentListControler);
 
