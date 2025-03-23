@@ -6,6 +6,8 @@ const clientRouter = require("./client");
 const needDocumentRouter = require("./needDocument");
 const employeeRouter = require("./employee");
 const recordRouter = require("./record");
+const operationRouter = require("./operation");
+const documentsRouter = require("./documents");
 const router = Router();
 
 router.use("/document-list", documentListRouter);
@@ -15,6 +17,7 @@ router.use("/client", clientRouter);
 router.use("/need-document", needDocumentRouter);
 router.use("/employee", employeeRouter);
 router.use("/record", recordRouter);
-
+router.use("/operation", operationRouter);
+router.use("/documents", documentsRouter);
 
 module.exports = router
